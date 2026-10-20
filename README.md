@@ -71,8 +71,3 @@ Then visit `http://localhost:8000`. Supabase URL configuration must include this
 - The admin user table shows accounts registered through this platform. It is not a visitor-tracking system and does not track anonymous visitors.
 - GitHub Pages is public static hosting. Never upload secrets, private API keys, or private course files to the repository.
 - A production release should add rate limiting/usage limits, stronger monitoring, file scanning, privacy notice/consent, and backups before accepting many users.
-
-
-## English Academy
-
-A separate `english.html` page with A1/A2/B1 lesson paths, vocabulary flashcards, an interactive quiz and remembered-word progress saved in this browser. Upload `english.html`, `english.css`, and `english.js` with the rest of the site.
