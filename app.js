@@ -1,6 +1,6 @@
 // STUDIA frontend. Configure your Supabase project in the constants below.
-const SUPABASE_URL = "https://YOUR_PROJECT_ID.supabase.co";
-const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+const SUPABASE_URL = "https://hdmsrvjjwcettvgrsasm.supabase.co/rest/v1/";
+const SUPABASE_ANON_KEY = "sb_publishable_g5y6r2jYioSkM9u8LF0-fg_rxV2EDhc";
 const CONFIGURED = !SUPABASE_URL.includes("YOUR_PROJECT_ID") && !SUPABASE_ANON_KEY.includes("YOUR_SUPABASE_ANON_KEY");
 const supabase = CONFIGURED && window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
