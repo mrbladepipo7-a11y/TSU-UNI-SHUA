@@ -311,7 +311,7 @@ async function uploadMaterial(event) {
   const file = $("#uploadFile").files[0];
   const status = $("#uploadStatus");
   if (!file) return;
-  if (file.size > 20 * 1024 * 1024) { status.textContent = "ფაილის ზომა 20 MB-ს არ უნდა აღემატებოდეს."; return; }
+  if (file.size > 100 * 1024 * 1024) { status.textContent = "ფაილის ზომა 100 MB-ს არ უნდა აღემატებოდეს."; return; }
   const allowed = [".pdf", ".txt", ".md"];
   if (!allowed.some(ext => file.name.toLowerCase().endsWith(ext))) { status.textContent = "ატვირთე მხოლოდ PDF, TXT ან MD ფაილი."; return; }
   const submit = $("#uploadSubmit");
