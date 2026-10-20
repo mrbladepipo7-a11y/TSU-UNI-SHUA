@@ -1,0 +1,4 @@
+# Never commit local secrets or environment files
+.env
+.env.*
+supabase/.temp/

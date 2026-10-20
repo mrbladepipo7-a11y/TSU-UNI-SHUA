@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ka">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="description" content="STUDIA — პირადი სასწავლო სივრცე გამოცდებისთვის მოსამზადებლად.">
+  <title>STUDIA — შენი სასწავლო სივრცე</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main class="auth-shell" id="authView">
+    <section class="auth-brand">
+      <a class="brand" href="#">STUDIA<span>.</span></a>
+      <div class="auth-message">
+        <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+        <h1>ისწავლე<br><em>ჭკვიანურად.</em></h1>
+        <p class="muted">მასალები ერთ სივრცეში. პირადი ჩანაწერები. მეტი თავდაჯერება გამოცდაზე.</p>
+      </div>
+      <div class="auth-foot mono">FOCUS ON WHAT MATTERS · EST. 2026</div>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-panel-top"><span class="eyebrow">WELCOME TO STUDIA</span><span class="secure-label"><i></i> დაცული შესვლა</span></div>
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="loginTab" type="button" role="tab" aria-selected="true">შესვლა</button>
+        <button class="auth-tab" id="signupTab" type="button" role="tab" aria-selected="false">რეგისტრაცია</button>
+      </div>
+      <form id="authForm" class="auth-form">
+        <div class="name-fields" id="nameFields" hidden>
+          <label>სახელი<input id="firstName" autocomplete="given-name" maxlength="60" placeholder="შენი სახელი"></label>
+          <label>გვარი<input id="lastName" autocomplete="family-name" maxlength="60" placeholder="შენი გვარი"></label>
+        </div>
+        <label>ელფოსტა<input id="authEmail" type="email" autocomplete="email" required maxlength="150" placeholder="name@example.com"></label>
+        <label>პაროლი<input id="authPassword" type="password" autocomplete="current-password" required minlength="8" placeholder="მინიმუმ 8 სიმბოლო"></label>
+        <button class="primary-button" id="authSubmit" type="submit">შესვლა <span>↗</span></button>
+        <p class="status-message" id="authMessage" role="status"></p>
+      </form>
+      <p class="privacy-note"><span>✦</span> შენი ანგარიში პირადია. ადმინისტრატორის უფლებები ცალკე ენიჭება და მხოლოდ შენს მიერ დადასტურებულ ანგარიშს ექნება ადმინისტრაციული წვდომა.</p>
+    </section>
+  </main>
+
+  <main class="app-shell" id="appView" hidden>
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#">STUDIA<span>.</span></a>
+      <div class="workspace-label mono">WORKSPACE</div>
+      <nav class="side-nav" aria-label="მთავარი მენიუ">
+        <button class="side-link active" data-view="dashboard"><span>◫</span> მთავარი დაფა</button>
+        <button class="side-link" data-view="materials"><span>▤</span> სასწავლო მასალები</button>
+        <button class="side-link" data-view="summaries"><span>✳</span> ჩემი ჩანაწერები</button>
+        <button class="side-link" data-view="admin" id="adminNav" hidden><span>⚙</span> ადმინის პანელი</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-profile"><div class="avatar" id="sideAvatar">S</div><div class="profile-text"><strong id="sideName">სტუდენტი</strong><span id="sideRole">სტუდენტი</span></div></div>
+        <button class="logout-button" id="logoutButton">გასვლა <span>↗</span></button>
+      </div>
+    </aside>
+    <section class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="მენიუს გახსნა">☰</button>
+        <div><span class="eyebrow" id="topEyebrow">YOUR STUDY SPACE</span><h2 id="pageTitle">მთავარი დაფა</h2></div>
+        <div class="topbar-right"><span class="today-chip" id="todayChip"></span><div class="avatar avatar-small" id="topAvatar">S</div></div>
+      </header>
+      <div class="content" id="contentArea">
+        <section class="welcome-banner">
+          <div><p class="eyebrow">შენი პროგრესის სივრცე</p><h1 id="welcomeTitle">მოგესალმები, სტუდენტო.</h1><p>აირჩიე მასალა და დაიწყე მომზადება უფრო ორგანიზებულად.</p></div>
+          <div class="banner-symbol">S<span>.</span></div>
+        </section>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon">▤</span><span class="stat-label">ხელმისაწვდომი მასალა</span><strong id="statMaterials">—</strong><span class="stat-foot">ადმინისტრატორის მიერ დამატებული</span></article>
+          <article class="stat-card"><span class="stat-icon">✳</span><span class="stat-label">ჩემი ჩანაწერები</span><strong id="statSummaries">—</strong><span class="stat-foot">შენ მიერ შენახული ჩანაწერები</span></article>
+          <article class="stat-card"><span class="stat-icon">◷</span><span class="stat-label">სასწავლო სივრცე</span><strong>24/7</strong><span class="stat-foot">შენი მასალები ერთ ადგილას</span></article>
+        </div>
+        <section class="section-block">
+          <div class="section-title"><div><p class="eyebrow">START HERE</p><h3>სწრაფი მოქმედებები</h3></div></div>
+          <div class="action-grid">
+            <button class="action-card" data-goto="materials"><span class="action-icon">▤</span><strong>მასალის ნახვა</strong><small>გახსენი სასწავლო მასალები</small><span class="card-arrow">↗</span></button>
+            <button class="action-card" data-goto="summaries"><span class="action-icon">✳</span><strong>ჩანაწერების ნახვა</strong><small>გადახედე შენს შენახულ კონსპექტებს</small><span class="card-arrow">↗</span></button>
+          </div>
+        </section>
+        <section class="section-block">
+          <div class="section-title"><div><p class="eyebrow">RECENT</p><h3>ბოლო ჩანაწერები</h3></div><button class="text-button" data-goto="summaries">ყველას ნახვა ↗</button></div>
+          <div id="recentSummaries" class="recent-list"><div class="loading-line">იტვირთება…</div></div>
+        </section>
+      </div>
+      <footer class="app-footer"><span>STUDIA<span class="gold">.</span> <span class="muted">სწავლა, რომელსაც სტრუქტურა აქვს.</span></span><span class="mono">PRIVATE STUDY SPACE · 2026</span></footer>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
